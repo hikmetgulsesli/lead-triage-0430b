@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useRef } from 'react';
+import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import './index.css';
 import { useAppState } from './hooks/useAppState';
 import { formatCurrency, formatDate, downloadExport, setSimulateError } from './utils/storage';
@@ -36,7 +36,7 @@ export default function App() {
   const [showNotifications, setShowNotifications] = useState(false);
   const [editingLead, setEditingLead] = useState<Lead | null>(null);
   const [showAddLead, setShowAddLead] = useState(false);
-  const [pressedView, setPressedView] = useState<string | null>(null);
+  const [pressedView, setPressedView] = useState<AppView | null>(null);
 
   const handleNavigate = useCallback((view: AppView) => {
     setCurrentView(view);
@@ -151,8 +151,7 @@ export default function App() {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const handleNavClick = useCallback((view: AppView) => {
-    setPressedView(view);
-    setTimeout(() => setPressedView(null), 250);
+    setPressedView((prev) => prev === view ? null : view);
     if (view === currentView && !showAddLead && !editingLead) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       searchInputRef.current?.focus();
@@ -160,6 +159,13 @@ export default function App() {
     handleNavigate(view);
     setShowNotifications(false);
   }, [currentView, showAddLead, editingLead, handleNavigate]);
+
+  // Clear pressed view after animation with proper cleanup
+  useEffect(() => {
+    if (pressedView === null) return;
+    const timer = setTimeout(() => setPressedView(null), 250);
+    return () => clearTimeout(timer);
+  }, [pressedView]);
 
   const handleProfileNav = useCallback(() => {
     setShowProfile(true);
@@ -271,7 +277,7 @@ export default function App() {
       {/* Top Navigation Bar */}
       <nav className="fixed top-0 left-0 right-0 z-50 h-16 bg-[--color-surface-container] border-b border-[--color-outline-variant] flex items-center justify-between px-6">
         <div className="flex items-center gap-6">
-          <h1 className="text-lg font-black text-[--color-on-surface]">LeadTriage</h1>
+          <span className="text-lg font-black text-[--color-on-surface]">LeadTriage</span>
           {/* Search bar */}
           <div className="relative hidden md:flex items-center">
             <span className="material-symbols-outlined absolute left-3 text-[--color-outline] text-[20px]">search</span>
@@ -304,8 +310,10 @@ export default function App() {
         {/* Trailing actions */}
         <div className="flex items-center gap-2">
           <button
+            id="notifications-trigger"
             aria-label="Bildirimler"
             aria-expanded={showNotifications}
+            aria-controls="notifications-panel"
             onClick={handleToggleNotifications}
             className={`w-[44px] h-[44px] flex items-center justify-center rounded-full transition-colors ${
               showNotifications
@@ -331,9 +339,14 @@ export default function App() {
 
       {/* Notifications Dropdown */}
       {showNotifications && (
-        <div className="fixed top-16 right-4 z-50 w-80 bg-[--color-surface-container] border border-[--color-outline-variant] rounded-lg shadow-2xl p-4 max-h-[70vh] overflow-y-auto">
+        <div
+            id="notifications-panel"
+            role="dialog"
+            aria-labelledby="notifications-heading"
+            className="fixed top-16 right-4 z-50 w-80 bg-[--color-surface-container] border border-[--color-outline-variant] rounded-lg shadow-2xl p-4 max-h-[70vh] overflow-y-auto"
+          >
           <div className="flex items-center justify-between mb-3">
-            <h2 className="font-h3 text-[--color-on-surface]">Bildirimler</h2>
+            <h2 id="notifications-heading" className="font-h3 text-[--color-on-surface]">Bildirimler</h2>
             <button
               aria-label="Bildirimleri kapat"
               onClick={handleCloseNotifications}

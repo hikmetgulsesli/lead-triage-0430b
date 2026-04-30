@@ -13,7 +13,7 @@ interface BosDurumEmptyStateProps {
 }
 
 export function BosDurumEmptyState(props: BosDurumEmptyStateProps) {
-  const { onAddLead, isAddOpen } = props;
+  const { onAddLead, isAddOpen = false } = props;
 
   return (
     <div className="flex-grow flex items-center justify-center p-lg relative overflow-y-auto">
