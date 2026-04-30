@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yeni Aday Ekle - LeadTriage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#32343d",
+                        "on-error": "#690005",
+                        "secondary-fixed": "#d5e3fc",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#191b23",
+                        "surface-container-high": "#282a32",
+                        "primary": "#b4c5ff",
+                        "on-background": "#e1e2ed",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "surface-dim": "#11131b",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline": "#8d90a0",
+                        "outline-variant": "#434655",
+                        "secondary-container": "#3c4a5e",
+                        "error": "#ffb4ab",
+                        "on-primary": "#002a78",
+                        "on-tertiary": "#581e00",
+                        "surface-container-highest": "#32343d",
+                        "on-secondary": "#233144",
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "inverse-primary": "#0053db",
+                        "secondary": "#b9c7df",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "surface-bright": "#373942",
+                        "on-secondary-container": "#abb9d1",
+                        "primary-container": "#2563eb",
+                        "tertiary-container": "#bc4800",
+                        "on-tertiary-container": "#ffede6",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface": "#11131b",
+                        "on-surface": "#e1e2ed",
+                        "background": "#11131b",
+                        "on-tertiary-fixed": "#360f00",
+                        "tertiary": "#ffb596",
+                        "inverse-on-surface": "#2e3039",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container-lowest": "#0c0e16",
+                        "inverse-surface": "#e1e2ed",
+                        "surface-container": "#1d1f27",
+                        "on-surface-variant": "#c3c6d7",
+                        "surface-tint": "#b4c5ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "touch-target": "44px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-base": ["Inter"],
+                        "h3": ["Inter"],
+                        "h1": ["Inter"],
+                        "h2": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                        "body-base": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h3": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "600"}],
+                        "h1": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "h2": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Fluid grid baseline */
+        body { font-size: 14px; }
+    </style>
+</head>
+<body class="bg-[#0F172A] text-on-surface font-body-base antialiased overflow-hidden flex h-screen w-screen relative">
+<!-- TopNavBar Web (Suppressed logic: Nav is hidden because this is a modal/transactional flow, but since the instruction asks to use the JSON components, and it's a side panel on top of the main app, we will show the underlying app shell dimmed) -->
+<!-- Background App Shell (Dimmed) -->
+<div class="absolute inset-0 z-0 flex flex-col pointer-events-none opacity-40 grayscale-[30%]">
+<header class="flex justify-between items-center h-16 px-6 w-full max-w-full bg-slate-800 dark:bg-[#1E293B] border-b border-slate-700 dark:border-[#334155] font-['Inter'] antialiased text-sm tracking-tight z-10 hidden md:flex">
+<div class="flex items-center gap-6">
+<div class="text-lg font-bold text-slate-50 dark:text-[#F8FAFC]">LeadTriage</div>
+<div class="relative hidden lg:block ml-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+<input class="bg-[#0F172A] border-[#334155] text-on-surface rounded-lg pl-10 pr-4 py-2 text-sm focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none w-64" disabled="" placeholder="Arama yapın..." type="text"/>
+</div>
+</div>
+<nav class="flex gap-6">
+<a class="text-slate-400 dark:text-[#475569] hover:text-slate-200 hover:bg-slate-700/50 dark:hover:bg-[#334155] transition-colors px-2 py-1" href="#">Adaylar</a>
+<a class="text-slate-400 dark:text-[#475569] hover:text-slate-200 hover:bg-slate-700/50 dark:hover:bg-[#334155] transition-colors px-2 py-1" href="#">Pipeline</a>
+<a class="text-slate-400 dark:text-[#475569] hover:text-slate-200 hover:bg-slate-700/50 dark:hover:bg-[#334155] transition-colors px-2 py-1" href="#">Analizler</a>
+<a class="text-slate-400 dark:text-[#475569] hover:text-slate-200 hover:bg-slate-700/50 dark:hover:bg-[#334155] transition-colors px-2 py-1" href="#">Ayarlar</a>
+</nav>
+<div class="flex items-center gap-4 text-blue-600 dark:text-[#2563EB]">
+<button class="hover:bg-slate-700/50 dark:hover:bg-[#334155] transition-colors p-2 rounded-full"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:bg-slate-700/50 dark:hover:bg-[#334155] transition-colors p-2 rounded-full"><span class="material-symbols-outlined">account_circle</span></button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-4 z-40 bg-slate-900 dark:bg-[#1E293B] border-r border-slate-700 dark:border-[#334155] font-['Inter'] text-sm leading-relaxed shadow-xl dark:shadow-none w-64 docked left-0 h-screen hidden lg:flex">
+<div class="mb-8 px-2">
+<div class="text-xl font-black text-slate-50 mb-6">LeadTriage</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center overflow-hidden">
+<img alt="Kullanıcı Profili" class="w-full h-full object-cover" data-alt="A professional headshot of a young male freelancer with a slight smile, wearing a neat dark shirt against a neutral grey background. Soft, even lighting highlights his features. The portrait sits within a small circular avatar frame, fitting the corporate minimalist aesthetic of the dashboard interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi8qfFwwFfswlavwkO0DOtwkuV6EzsxRGWqiX0jzZ1Kd1JpG92ZFt3AvSU1Tt_VUxxk0nZHz9h7Jt7xlNFyro9HsWYHsjRwvyLUFQqlk4wOuLu-AwZx3W9bN7vuH4FVczd2CRPbCkUxCOt2mgJvsMtrBtYiWq5Gam2CZHLlsblm7k9mMIRZ9ph_pKMQUBKfNFLBvXcYm0CFO32QAjLTrom7ZatdQ6M8YyQhEo0uoF8DAa3ci8DjfXtaoldaloFSQDrw7wz0cmdEn4"/>
+</div>
+<div>
+<div class="font-h3 text-slate-50">Freelancer Paneli</div>
+<div class="text-slate-400 text-xs">Hoş geldiniz</div>
+</div>
+</div>
+</div>
+<button class="bg-[#2563EB] text-white rounded-lg px-4 py-2 mb-6 font-medium text-sm flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors w-full h-[44px]">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Yeni Aday Ekle
+                </button>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-400 dark:text-[#475569] px-4 py-2 flex items-center gap-3 hover:text-slate-100 hover:bg-slate-800 dark:hover:bg-[#334155] rounded-md transition-colors" href="#">
+<span class="material-symbols-outlined">person</span> Profilim
+                    </a>
+<a class="text-slate-400 dark:text-[#475569] px-4 py-2 flex items-center gap-3 hover:text-slate-100 hover:bg-slate-800 dark:hover:bg-[#334155] rounded-md transition-colors" href="#">
+<span class="material-symbols-outlined">notifications</span> Bildirim Ayarları
+                    </a>
+<a class="text-slate-400 dark:text-[#475569] px-4 py-2 flex items-center gap-3 hover:text-slate-100 hover:bg-slate-800 dark:hover:bg-[#334155] rounded-md transition-colors" href="#">
+<span class="material-symbols-outlined">help_outline</span> Destek
+                    </a>
+</nav>
+</aside>
+<main class="flex-1 p-lg ml-0 lg:ml-64 bg-[#0F172A]">
+<!-- Placeholder for main content -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="h-40 bg-[#1E293B] border border-[#334155] rounded-xl"></div>
+<div class="h-40 bg-[#1E293B] border border-[#334155] rounded-xl"></div>
+<div class="h-40 bg-[#1E293B] border border-[#334155] rounded-xl"></div>
+</div>
+</main>
+</div>
+</div>
+<!-- Modal Overlay Backdrop -->
+<div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex justify-end">
+<!-- Side Panel Modal -->
+<dialog class="relative bg-surface-container-low h-full w-full max-w-md md:max-w-xl m-0 ml-auto border-l border-outline-variant shadow-2xl flex flex-col text-on-surface" open="">
+<!-- Header -->
+<div class="flex items-center justify-between px-lg py-md border-b border-outline-variant bg-surface-container-high shrink-0">
+<div>
+<h2 class="font-h2 text-on-surface">Yeni Aday Ekle</h2>
+<p class="font-body-sm text-on-surface-variant mt-1">Sisteme yeni bir potansiyel müşteri kaydedin.</p>
+</div>
+<button aria-label="Kapat" class="w-[44px] h-[44px] rounded-full flex items-center justify-center hover:bg-surface-variant text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Form Content -->
+<div class="flex-1 overflow-y-auto px-lg py-lg space-y-6 custom-scrollbar">
+<!-- Bento-style Group: Core Info -->
+<div class="bg-surface-container rounded-xl p-md border border-outline-variant space-y-5">
+<h3 class="font-label-sm text-on-surface-variant uppercase tracking-widest mb-4">Temel Bilgiler</h3>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface block" for="name">Ad Soyad <span class="text-error">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">person</span>
+<input class="w-full bg-background border-error text-on-surface rounded-lg pl-10 pr-4 py-2.5 min-h-[44px] font-body-base focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all" id="name" name="name" placeholder="Veri giriniz..." type="text" value=""/>
+</div>
+<p class="font-body-sm text-error flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                            Ad Soyad alanı zorunludur.
+                        </p>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface block" for="company">Şirket</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">domain</span>
+<input class="w-full bg-background border-outline-variant text-on-surface rounded-lg pl-10 pr-4 py-2.5 min-h-[44px] font-body-base focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all" id="company" name="company" placeholder="Veri giriniz..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Bento-style Group: Qualification -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container rounded-xl p-md border border-outline-variant space-y-4">
+<div class="space-y-2">
+<label class="font-label-md text-on-surface block" for="source">Kaynak <span class="text-error">*</span></label>
+<div class="relative">
+<select class="w-full bg-background border-outline-variant text-on-surface rounded-lg pl-3 pr-10 py-2.5 min-h-[44px] font-body-base focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none appearance-none transition-all" id="source" name="source">
+<option disabled="" selected="" value="">Seçiniz...</option>
+<option value="linkedin">LinkedIn</option>
+<option value="referans">Referans</option>
+<option value="email">Email</option>
+<option value="diger">Diğer</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface block" for="status">Durum</label>
+<div class="relative">
+<select class="w-full bg-background border-outline-variant text-on-surface rounded-lg pl-3 pr-10 py-2.5 min-h-[44px] font-body-base focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none appearance-none transition-all" id="status" name="status">
+<option selected="" value="yeni">Yeni</option>
+<option value="beklemede">Beklemede</option>
+<option value="iletisim">İletişimde</option>
+<option value="tamamlandi">Tamamlandı</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-md border border-outline-variant space-y-4">
+<div class="space-y-2">
+<label class="font-label-md text-on-surface block" for="value">Tahmini Değer</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-outline font-body-base">₺</span>
+<input class="w-full bg-background border-outline-variant text-on-surface rounded-lg pl-8 pr-4 py-2.5 min-h-[44px] font-body-base focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all" id="value" name="value" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface block" for="date">Tarih</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">calendar_today</span>
+<input class="w-full bg-background border-outline-variant text-on-surface rounded-lg pl-10 pr-4 py-2.5 min-h-[44px] font-body-base focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all [color-scheme:dark]" id="date" name="date" type="date"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Next Action Full Width -->
+<div class="bg-surface-container rounded-xl p-md border border-outline-variant space-y-2">
+<label class="font-label-md text-on-surface block" for="next_action">Sonraki Aksiyon</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-4 text-outline text-[20px]">assignment</span>
+<textarea class="w-full bg-background border-outline-variant text-on-surface rounded-lg pl-10 pr-4 py-3 font-body-base focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all resize-none" id="next_action" name="next_action" placeholder="Aday için planlanan bir sonraki adımı giriniz..." rows="3"></textarea>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-lg py-md border-t border-outline-variant bg-surface-container-high flex items-center justify-end gap-3 shrink-0">
+<button class="min-h-[44px] px-6 font-label-md text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+                    İptal
+                </button>
+<button class="min-h-[44px] px-6 rounded-lg bg-primary-container text-on-primary-container font-label-md hover:bg-inverse-primary transition-colors flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                    Kaydet
+                </button>
+</div>
+</dialog>
+</div>
+</body></html>

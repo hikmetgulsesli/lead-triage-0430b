@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Adaylar - LeadTriage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#32343d",
+                      "on-error": "#690005",
+                      "secondary-fixed": "#d5e3fc",
+                      "error-container": "#93000a",
+                      "surface-container-low": "#191b23",
+                      "surface-container-high": "#282a32",
+                      "primary": "#b4c5ff",
+                      "on-background": "#e1e2ed",
+                      "on-primary-fixed": "#00174b",
+                      "on-secondary-fixed-variant": "#3a485b",
+                      "surface-dim": "#11131b",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "outline": "#8d90a0",
+                      "outline-variant": "#434655",
+                      "secondary-container": "#3c4a5e",
+                      "error": "#ffb4ab",
+                      "on-primary": "#002a78",
+                      "on-tertiary": "#581e00",
+                      "surface-container-highest": "#32343d",
+                      "on-secondary": "#233144",
+                      "on-primary-container": "#eeefff",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "inverse-primary": "#0053db",
+                      "secondary": "#b9c7df",
+                      "on-secondary-fixed": "#0d1c2e",
+                      "surface-bright": "#373942",
+                      "on-secondary-container": "#abb9d1",
+                      "primary-container": "#2563eb",
+                      "tertiary-container": "#bc4800",
+                      "on-tertiary-container": "#ffede6",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "tertiary-fixed": "#ffdbcd",
+                      "on-error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#b9c7df",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "surface": "#11131b",
+                      "on-surface": "#e1e2ed",
+                      "background": "#11131b",
+                      "on-tertiary-fixed": "#360f00",
+                      "tertiary": "#ffb596",
+                      "inverse-on-surface": "#2e3039",
+                      "primary-fixed": "#dbe1ff",
+                      "surface-container-lowest": "#0c0e16",
+                      "inverse-surface": "#e1e2ed",
+                      "surface-container": "#1d1f27",
+                      "on-surface-variant": "#c3c6d7",
+                      "surface-tint": "#b4c5ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "touch-target": "44px",
+                      "unit": "4px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "body-base": [
+                              "Inter"
+                      ],
+                      "h3": [
+                              "Inter"
+                      ],
+                      "h1": [
+                              "Inter"
+                      ],
+                      "h2": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "14px",
+                                      "letterSpacing": "0.03em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-base": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h3": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "h1": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "h2": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-base antialiased min-h-screen flex flex-col md:flex-row">
+<!-- Mobile Top Navigation (Visible only on md:hidden if SideNav is hidden, but SideNav is required by JSON so we hide TopNavBar on mobile as per standard, wait, instructions say: On MOBILE (`md:hidden`), prohibit top-row text links and use BottomNavBar. On WEB (`hidden md:flex`), hide the BottomNavBar and use the full nav cluster in the TopAppBar.
+    Wait, the JSON provided both TopNavBar and SideNavBar. We will use SideNavBar for web and TopNavBar logic for mobile/web hybrid as instructed, but let's stick to SideNavBar for left as it's typical for desktop, and maybe TopNavBar on top. 
+    Actually, JSON gives TopNavBar and SideNavBar. I will render both. SideNavBar hidden on mobile, TopNavBar hidden on desktop? Or TopNavBar on top, SideNavBar on side? The prompt says "Main application view... Navigation tabs at the top". So I'll prioritize TopNavBar as requested by user prompt. But JSON has SideNavBar. I'll include SideNavBar left, TopNavBar top right, or just follow JSON. I will render TopNavBar. -->
+<!-- TopNavBar -->
+<nav class="bg-slate-800 dark:bg-[#1E293B] font-['Inter'] antialiased text-sm tracking-tight docked full-width top-0 border-b border-b border-slate-700 dark:border-[#334155] flat no shadows flex justify-between items-center h-16 px-6 w-full max-w-full z-50 fixed hidden md:flex">
+<div class="flex items-center gap-6">
+<div class="text-lg font-bold text-slate-50 dark:text-[#F8FAFC]">LeadTriage</div>
+<!-- Search Bar on Top Left -->
+<div class="relative flex items-center ml-4">
+<span class="material-symbols-outlined absolute left-3 text-outline" data-icon="search">search</span>
+<input class="bg-[#0F172A] border border-[#334155] rounded-DEFAULT text-on-surface pl-10 pr-4 py-2 h-9 focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition-all placeholder:text-[#475569] font-body-sm text-body-sm w-64" placeholder="Arama yapın..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-8 h-full">
+<div class="flex h-full items-end gap-6">
+<!-- Navigation Links -->
+<a class="text-blue-500 dark:text-[#2563EB] border-b-2 border-blue-600 pb-1 font-semibold flex items-center h-full pt-1 hover:bg-slate-700/50 dark:hover:bg-[#334155] transition-colors opacity-80 scale-95 transition-all" href="#">Adaylar</a>
+<a class="text-slate-400 dark:text-[#475569] hover:text-slate-200 flex items-center h-full pt-1 pb-[6px] border-b-2 border-transparent hover:bg-slate-700/50 dark:hover:bg-[#334155] transition-colors" href="#">Pipeline</a>
+<a class="text-slate-400 dark:text-[#475569] hover:text-slate-200 flex items-center h-full pt-1 pb-[6px] border-b-2 border-transparent hover:bg-slate-700/50 dark:hover:bg-[#334155] transition-colors" href="#">Analizler</a>
+<a class="text-slate-400 dark:text-[#475569] hover:text-slate-200 flex items-center h-full pt-1 pb-[6px] border-b-2 border-transparent hover:bg-slate-700/50 dark:hover:bg-[#334155] transition-colors" href="#">Ayarlar</a>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-4 text-blue-600 dark:text-[#2563EB]">
+<button class="hover:bg-slate-700/50 dark:hover:bg-[#334155] p-2 rounded-full transition-colors flex items-center justify-center min-w-[44px] min-h-[44px]">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-slate-700/50 dark:hover:bg-[#334155] p-2 rounded-full transition-colors flex items-center justify-center min-w-[44px] min-h-[44px]">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Mobile / Web structure handling) -->
+<aside class="bg-slate-900 dark:bg-[#1E293B] font-['Inter'] text-sm leading-relaxed docked left-0 h-screen w-64 border-r border-r border-slate-700 dark:border-[#334155] shadow-xl dark:shadow-none fixed left-0 top-0 h-full flex flex-col p-4 z-40 md:hidden">
+<div class="flex flex-col gap-8 h-full">
+<div>
+<div class="text-xl font-black text-slate-50 mb-6">LeadTriage</div>
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden flex-shrink-0">
+<img alt="Kullanıcı Profili" class="w-full h-full object-cover" data-alt="A close-up portrait of a confident male professional with a short beard and dark hair, wearing a casual grey t-shirt. The lighting is soft and natural, creating a warm and approachable mood. The background is a blurred, out-of-focus light grey wall, keeping the focus entirely on the subject. The image has a clean, modern aesthetic suitable for a sleek SaaS dashboard profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbkhBrHlLP49IUS1JavLiM0NT5OvosXixbDrE4Y2W5kKbsH2q_xKKfybY2daCUusfsK32cgr1o5LiqXd5s09KT710pKNd1LbP3Swoh57Yhk9Z4wksJsSB6jCMKVk6zlqCzeK5Z-DyhEkAUcCh8qqUMvxmLwsb7I_CZZG_X0DaziB46O8j7kvCgDG06WnQWZujVKAuWSRf5VhM3JHvoLNJhnV2PzmOi_1xTPMc6lXZjxSXqm0d_PYtevK3vmoc22I2WjVtWhQVTFj8"/>
+</div>
+<div>
+<div class="font-h3 text-h3 text-on-surface">Freelancer Paneli</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Hoş geldiniz</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<a class="bg-blue-600/10 dark:bg-[#2563EB]/10 text-blue-500 dark:text-[#2563EB] rounded-md px-4 py-2 flex items-center gap-3 hover:bg-slate-800 dark:hover:bg-[#334155] rounded-md translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                        Profilim
+                    </a>
+<a class="text-slate-400 dark:text-[#475569] px-4 py-2 flex items-center gap-3 hover:text-slate-100 hover:bg-slate-800 dark:hover:bg-[#334155] rounded-md" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+                        Bildirim Ayarları
+                    </a>
+<a class="text-slate-400 dark:text-[#475569] px-4 py-2 flex items-center gap-3 hover:text-slate-100 hover:bg-slate-800 dark:hover:bg-[#334155] rounded-md" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+                        Destek
+                    </a>
+</div>
+</div>
+<div class="mt-auto">
+<button class="w-full bg-[#2563EB] text-white font-body-base text-body-base rounded-DEFAULT py-2 px-4 hover:bg-inverse-primary transition-colors flex items-center justify-center gap-2 min-h-[44px]">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                    Yeni Aday Ekle
+                </button>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full md:mt-16 bg-background pt-lg px-lg pb-lg md:ml-0 overflow-x-hidden">
+<!-- Page Header & Actions -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-xl">
+<div>
+<h1 class="font-h1 text-h1 text-on-surface">Adaylar</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Aktif satış fırsatlarınızı yönetin ve önceliklendirin.</p>
+</div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<!-- Mobile Search (if top nav hidden) -->
+<div class="relative flex items-center flex-1 md:hidden">
+<span class="material-symbols-outlined absolute left-3 text-outline" data-icon="search">search</span>
+<input class="w-full bg-[#0F172A] border border-[#334155] rounded-DEFAULT text-on-surface pl-10 pr-4 py-2 h-11 focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition-all placeholder:text-[#475569] font-body-sm text-body-sm" placeholder="Arama yapın..." type="text"/>
+</div>
+<button class="hidden md:flex bg-[#2563EB] text-white font-label-md text-label-md rounded-DEFAULT px-4 py-2 items-center justify-center gap-2 min-h-[44px] hover:bg-inverse-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                    Yeni Aday Ekle
+                </button>
+</div>
+</div>
+<!-- Filters Section -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-4 mb-gutter flex flex-wrap gap-4 items-center">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider w-full md:w-auto">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+                Filtreler
+            </div>
+<select class="bg-[#0F172A] border border-[#334155] rounded-DEFAULT text-on-surface py-2 pl-3 pr-8 min-h-[44px] font-body-sm text-body-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none appearance-none">
+<option value="">Kaynak: Tümü</option>
+<option value="web">Web Sitesi</option>
+<option value="referral">Referans</option>
+<option value="outbound">Dış Arama</option>
+</select>
+<select class="bg-[#0F172A] border border-[#334155] rounded-DEFAULT text-on-surface py-2 pl-3 pr-8 min-h-[44px] font-body-sm text-body-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none appearance-none">
+<option value="">Durum: Tümü</option>
+<option value="yeni">Yeni</option>
+<option value="beklemede">Beklemede</option>
+<option value="gorusuldu">Görüşüldü</option>
+</select>
+<select class="bg-[#0F172A] border border-[#334155] rounded-DEFAULT text-on-surface py-2 pl-3 pr-8 min-h-[44px] font-body-sm text-body-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none appearance-none">
+<option value="">Değer: Sırala</option>
+<option value="high">Yüksekten Düşüğe</option>
+<option value="low">Düşükten Yükseğe</option>
+</select>
+<button class="ml-auto text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors min-h-[44px] px-2">
+                Temizle
+            </button>
+</div>
+<!-- Data Table (Bento/Card Hybrid for modern feel) -->
+<div class="bg-surface-container-low border border-[#334155] rounded-lg overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="border-b border-[#334155] bg-surface-container-high">
+<th class="px-4 py-3 font-label-sm text-label-sm text-[#475569] uppercase tracking-wider font-semibold">Aday / Şirket</th>
+<th class="px-4 py-3 font-label-sm text-label-sm text-[#475569] uppercase tracking-wider font-semibold">Kaynak</th>
+<th class="px-4 py-3 font-label-sm text-label-sm text-[#475569] uppercase tracking-wider font-semibold">Tahmini Değer</th>
+<th class="px-4 py-3 font-label-sm text-label-sm text-[#475569] uppercase tracking-wider font-semibold">Durum</th>
+<th class="px-4 py-3 font-label-sm text-label-sm text-[#475569] uppercase tracking-wider font-semibold">Sonraki Aksiyon</th>
+<th class="px-4 py-3 font-label-sm text-label-sm text-[#475569] uppercase tracking-wider font-semibold">Tarih</th>
+<th class="px-4 py-3 font-label-sm text-label-sm text-[#475569] uppercase tracking-wider font-semibold text-right">İşlemler</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#334155]">
+<!-- Row 1 -->
+<tr class="hover:bg-[#334155] transition-colors group">
+<td class="px-4 py-sm">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-md text-label-md font-bold">
+                                        AC
+                                    </div>
+<div>
+<div class="font-body-base text-body-base text-on-surface font-medium">Ahmet Yılmaz</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Acme Corp</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-sm font-body-sm text-body-sm text-on-surface-variant">Web Sitesi</td>
+<td class="px-4 py-sm font-body-base text-body-base text-on-surface">₺45,000</td>
+<td class="px-4 py-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded-xs font-label-sm text-label-sm bg-primary-container/20 text-primary-fixed">Yeni</span>
+</td>
+<td class="px-4 py-sm font-body-sm text-body-sm text-on-surface-variant">
+                                İlk aramayı yap
+                            </td>
+<td class="px-4 py-sm font-body-sm text-body-sm text-on-surface-variant">12 Eki 2023</td>
+<td class="px-4 py-sm text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-variant flex items-center justify-center transition-colors" title="Görüşüldü İşaretle">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+</button>
+<button class="w-8 h-8 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-variant flex items-center justify-center transition-colors" title="Düzenle">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="w-8 h-8 rounded text-error hover:bg-error-container/20 flex items-center justify-center transition-colors" title="Sil">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#334155] transition-colors group">
+<td class="px-4 py-sm">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-label-md text-label-md font-bold">
+                                        GT
+                                    </div>
+<div>
+<div class="font-body-base text-body-base text-on-surface font-medium">Ayşe Demir</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Global Tech</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-sm font-body-sm text-body-sm text-on-surface-variant">Referans</td>
+<td class="px-4 py-sm font-body-base text-body-base text-on-surface">₺120,000</td>
+<td class="px-4 py-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded-xs font-label-sm text-label-sm bg-[#334155] text-on-surface-variant">Beklemede</span>
+</td>
+<td class="px-4 py-sm font-body-sm text-body-sm text-on-surface-variant">
+                                Teklif gönderilecek
+                            </td>
+<td class="px-4 py-sm font-body-sm text-body-sm text-on-surface-variant">10 Eki 2023</td>
+<td class="px-4 py-sm text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-variant flex items-center justify-center transition-colors" title="Görüşüldü İşaretle">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+</button>
+<button class="w-8 h-8 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-variant flex items-center justify-center transition-colors" title="Düzenle">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="w-8 h-8 rounded text-error hover:bg-error-container/20 flex items-center justify-center transition-colors" title="Sil">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-[#334155] transition-colors group">
+<td class="px-4 py-sm">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-label-md text-label-md font-bold">
+                                        NX
+                                    </div>
+<div>
+<div class="font-body-base text-body-base text-on-surface font-medium">Mehmet Kaya</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">NextGen Inc</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-sm font-body-sm text-body-sm text-on-surface-variant">Dış Arama</td>
+<td class="px-4 py-sm font-body-base text-body-base text-on-surface">₺15,000</td>
+<td class="px-4 py-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded-xs font-label-sm text-label-sm bg-secondary-container/50 text-secondary-fixed">Görüşüldü</span>
+</td>
+<td class="px-4 py-sm font-body-sm text-body-sm text-on-surface-variant">
+                                Takip araması (Cuma)
+                            </td>
+<td class="px-4 py-sm font-body-sm text-body-sm text-on-surface-variant">08 Eki 2023</td>
+<td class="px-4 py-sm text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-variant flex items-center justify-center transition-colors" title="Görüşüldü İşaretle">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+</button>
+<button class="w-8 h-8 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-variant flex items-center justify-center transition-colors" title="Düzenle">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="w-8 h-8 rounded text-error hover:bg-error-container/20 flex items-center justify-center transition-colors" title="Sil">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer -->
+<div class="px-4 py-3 border-t border-[#334155] bg-[#1E293B] flex items-center justify-between">
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+                    Toplam 24 adaydan 1-3 arası gösteriliyor
+                </div>
+<div class="flex items-center gap-2">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

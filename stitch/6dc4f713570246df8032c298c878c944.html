@@ -1,0 +1,35 @@
+# lead-triage-0430b PRD
+
+## Genel Bakis
+lead-triage-0430b, verilen gorev metnindeki urun ihtiyacini dogrudan calisan bir uygulamaya donusturur. Ilk ekran landing degil, kullanicinin ana is akisini baslatabildigi gercek uygulama ekranidir. Arayuz Turkce, taranabilir ve tekrarli kullanim icin dusuk gorsel gurultulu olmalidir.
+
+## Hedefler
+- Kullaniciya ilk yuklemede calisan ve bos/dolu/hata durumlari olan bir deneyim sunmak.
+- Tum gorunen buton ve icon buttonlarin gercek state, route, panel veya form davranisi uretmesini saglamak.
+- Mobil ve desktop gorunumlerde metin tasmasi, ust uste binme ve olusmayan aksiyon birakmamak.
+- localStorage veya secilen veri katmani ile veri kaliciligini net hata/geri alma davranislariyla kurmak.
+- Smoke, final test ve deploy adimlarinda dogrulanabilir, deterministic bir uygulama yuzeyi olusturmak.
+
+## Teknik Kararlar
+- Framework: React 18 + Vite + TypeScript.
+- Styling: Tailwind CSS veya sade CSS modules; domain icin kurumsal/minimal tasarim.
+- State: React state + reducer/context; kucuk uygulama icin ek global state kutuphanesi gerekmez.
+- Storage: localStorage, hata durumunda gorunur banner ve retry/clear aksiyonlari.
+- Icons: Lucide React; emoji veya dekoratif button kullanma.
+- Test yuzeyi: window.app icinde state, aktif ekran, hata ve temel sayaclar gorunur tutulur.
+
+## Fonksiyonel Gereksinimler
+- R1: Freelancerlar icin kompakt bir lead triage ve takip uygulamasi yap.
+- R6: Ozellikler:
+- R7: Ust nav/tabs: Leads, Pipeline, Insights, Settings ve sagda profil/account ikon butonu.
+- R8: Profil/account ikon butonu gercekten calissin: panel veya sayfa acsin; kullanici adi, timezone, bildirim togglelari, cikis/geri/close davranislari olsun.
+- R9: Lead ekleme formu: ad, sirket, kaynak, tahmini deger, durum, sonraki aksiyon, tarih.
+- R10: Lead kartlari: durum degistirme, contacted olarak isaretleme, duzenleme, silme, arama ve filtreleme.
+- R11: Pipeline gorunumu: durum kolonlari ve toplam degerler.
+- R12: Insights gorunumu: toplam lead, kazanilan/kaybedilen oran, tahmini gelir ve haftalik aktivite.
+
+## UI/UX Gereksinimleri
+- Aesthetic: corporate/minimal, SaaS veya operasyon araci gibi sessiz ve taranabilir.
+- Palette: Primary #2563EB, Secondary #475569, Background #F8FAFC, Surface #FFFFFF, Text #0F172A, Border #E2E8F0, Success #16A34A, Error #DC2626, Warning #D97706.
+- Typography: Inter veya sistem sans; kompakt panellerde kucuk ama okunur basliklar.
+- Components: 8px veya daha dusuk radius kartlar, net focus ring, 44x44px dokunma hedefi.

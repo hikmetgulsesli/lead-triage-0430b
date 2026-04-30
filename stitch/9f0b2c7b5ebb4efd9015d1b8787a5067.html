@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ayarlar - LeadTriage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#32343d",
+                      "on-error": "#690005",
+                      "secondary-fixed": "#d5e3fc",
+                      "error-container": "#93000a",
+                      "surface-container-low": "#191b23",
+                      "surface-container-high": "#282a32",
+                      "primary": "#b4c5ff",
+                      "on-background": "#e1e2ed",
+                      "on-primary-fixed": "#00174b",
+                      "on-secondary-fixed-variant": "#3a485b",
+                      "surface-dim": "#11131b",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "outline": "#8d90a0",
+                      "outline-variant": "#434655",
+                      "secondary-container": "#3c4a5e",
+                      "error": "#ffb4ab",
+                      "on-primary": "#002a78",
+                      "on-tertiary": "#581e00",
+                      "surface-container-highest": "#32343d",
+                      "on-secondary": "#233144",
+                      "on-primary-container": "#eeefff",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "inverse-primary": "#0053db",
+                      "secondary": "#b9c7df",
+                      "on-secondary-fixed": "#0d1c2e",
+                      "surface-bright": "#373942",
+                      "on-secondary-container": "#abb9d1",
+                      "primary-container": "#2563eb",
+                      "tertiary-container": "#bc4800",
+                      "on-tertiary-container": "#ffede6",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "tertiary-fixed": "#ffdbcd",
+                      "on-error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#b9c7df",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "surface": "#11131b",
+                      "on-surface": "#e1e2ed",
+                      "background": "#11131b",
+                      "on-tertiary-fixed": "#360f00",
+                      "tertiary": "#ffb596",
+                      "inverse-on-surface": "#2e3039",
+                      "primary-fixed": "#dbe1ff",
+                      "surface-container-lowest": "#0c0e16",
+                      "inverse-surface": "#e1e2ed",
+                      "surface-container": "#1d1f27",
+                      "on-surface-variant": "#c3c6d7",
+                      "surface-tint": "#b4c5ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "touch-target": "44px",
+                      "unit": "4px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "body-base": [
+                              "Inter"
+                      ],
+                      "h3": [
+                              "Inter"
+                      ],
+                      "h1": [
+                              "Inter"
+                      ],
+                      "h2": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "14px",
+                                      "letterSpacing": "0.03em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-base": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h3": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "h1": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "h2": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface font-body-base min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar (Web) -->
+<nav class="hidden md:flex bg-slate-900 dark:bg-[#1E293B] font-['Inter'] text-sm leading-relaxed docked left-0 h-screen w-64 border-r border-r border-slate-700 dark:border-[#334155] shadow-xl dark:shadow-none fixed left-0 top-0 h-full flex flex-col p-4 z-40">
+<div class="mb-8 px-4">
+<h1 class="text-xl font-black text-slate-50">LeadTriage</h1>
+<p class="text-slate-400 text-xs mt-1">Freelancer Paneli</p>
+</div>
+<div class="flex-1 space-y-2">
+<a class="text-slate-400 dark:text-[#475569] px-4 py-2 flex items-center gap-3 hover:text-slate-100 hover:bg-slate-800 dark:hover:bg-[#334155] rounded-md transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+<span>Profilim</span>
+</a>
+<a class="text-slate-400 dark:text-[#475569] px-4 py-2 flex items-center gap-3 hover:text-slate-100 hover:bg-slate-800 dark:hover:bg-[#334155] rounded-md transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+<span>Bildirim Ayarları</span>
+</a>
+<a class="text-slate-400 dark:text-[#475569] px-4 py-2 flex items-center gap-3 hover:text-slate-100 hover:bg-slate-800 dark:hover:bg-[#334155] rounded-md transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help_outline</span>
+<span>Destek</span>
+</a>
+</div>
+<div class="mt-auto">
+<button class="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-md py-2 px-4 font-semibold text-sm transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Yeni Aday Ekle
+            </button>
+</div>
+</nav>
+<div class="flex-1 flex flex-col md:ml-64 w-full max-w-full overflow-hidden">
+<!-- TopNavBar (Responsive) -->
+<header class="bg-slate-800 dark:bg-[#1E293B] font-['Inter'] antialiased text-sm tracking-tight docked full-width top-0 border-b border-b border-slate-700 dark:border-[#334155] flat no shadows flex justify-between items-center h-16 px-6 w-full max-w-full shrink-0">
+<div class="flex items-center gap-6 h-full">
+<span class="md:hidden text-lg font-bold text-slate-50 dark:text-[#F8FAFC]">LeadTriage</span>
+<nav class="hidden md:flex h-full items-center gap-6">
+<a class="text-slate-400 dark:text-[#475569] hover:text-slate-200 h-full flex items-center transition-colors" href="#">Adaylar</a>
+<a class="text-slate-400 dark:text-[#475569] hover:text-slate-200 h-full flex items-center transition-colors" href="#">Pipeline</a>
+<a class="text-slate-400 dark:text-[#475569] hover:text-slate-200 h-full flex items-center transition-colors" href="#">Analizler</a>
+<a class="text-blue-500 dark:text-[#2563EB] border-b-2 border-blue-600 pb-1 font-semibold h-full flex items-center" href="#">Ayarlar</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-400 dark:text-[#475569] hover:text-slate-200 hover:bg-slate-700/50 dark:hover:bg-[#334155] p-2 rounded-full transition-colors focus:outline-none">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="text-slate-400 dark:text-[#475569] hover:text-slate-200 hover:bg-slate-700/50 dark:hover:bg-[#334155] p-2 rounded-full transition-colors focus:outline-none">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto p-gutter md:p-lg">
+<div class="max-w-4xl mx-auto space-y-lg">
+<!-- Page Header -->
+<div>
+<h2 class="font-h1 text-h1 text-on-surface">Ayarlar</h2>
+<p class="font-body-base text-body-base text-on-surface-variant mt-1">Uygulama tercihlerinizi ve sistem ayarlarınızı yapılandırın.</p>
+</div>
+<!-- Bento Grid Layout for Settings -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Görünüm & Tema (Appearance & Theme) -->
+<div class="bg-surface-container rounded-xl border border-outline-variant p-lg flex flex-col gap-md h-full">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-surface-container-high rounded-lg text-primary">
+<span class="material-symbols-outlined">palette</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface">Görünüm &amp; Tema</h3>
+</div>
+<div class="space-y-4 flex-1">
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant block mb-2">Tema Yoğunluğu</label>
+<div class="flex bg-surface-container-high p-1 rounded-lg border border-outline-variant">
+<button class="flex-1 py-2 px-4 rounded-md bg-surface-variant text-on-surface font-label-md text-label-md transition-colors text-center">
+                                        Kompakt
+                                    </button>
+<button class="flex-1 py-2 px-4 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 font-label-md text-label-md transition-colors text-center">
+                                        Varsayılan
+                                    </button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Tablolarda ve listelerde daha fazla veri göstermek için kompakt görünümü seçin.</p>
+</div>
+</div>
+</div>
+<!-- Bölgesel Ayarlar (Regional Settings) -->
+<div class="bg-surface-container rounded-xl border border-outline-variant p-lg flex flex-col gap-md h-full">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-surface-container-high rounded-lg text-primary">
+<span class="material-symbols-outlined">public</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface">Bölgesel Ayarlar</h3>
+</div>
+<div class="space-y-4 flex-1">
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant block mb-2" for="currency-select">Para Birimi</label>
+<div class="relative">
+<select class="w-full bg-surface-dim border border-outline-variant text-on-surface font-body-base text-body-base rounded-lg px-4 h-[44px] focus:ring-2 focus:ring-primary-container focus:border-primary-container appearance-none outline-none" id="currency-select">
+<option value="TRY">TRY (₺)</option>
+<option value="USD">USD ($)</option>
+<option value="EUR">EUR (€)</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Finansal analizler ve pipeline değerleri için varsayılan para birimi.</p>
+</div>
+</div>
+</div>
+<!-- Bildirim & Hatırlatıcılar (Notifications & Reminders) -->
+<div class="bg-surface-container rounded-xl border border-outline-variant p-lg flex flex-col gap-md h-full md:col-span-2">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-surface-container-high rounded-lg text-primary">
+<span class="material-symbols-outlined">notifications_active</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface">Hatırlatıcı Tercihleri</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-lg gap-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-high rounded-lg border border-outline-variant/50">
+<div>
+<p class="font-label-md text-label-md text-on-surface">Yeni Aday Bildirimleri</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pipeline'a yeni bir aday eklendiğinde bildir.</p>
+</div>
+<button class="w-12 h-6 bg-primary-container rounded-full relative transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-background">
+<span class="absolute right-1 top-1 w-4 h-4 bg-on-primary rounded-full transition-transform"></span>
+</button>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-high rounded-lg border border-outline-variant/50">
+<div>
+<p class="font-label-md text-label-md text-on-surface">Takip Hatırlatıcıları</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Beklemedeki adaylar için günlük özet gönder.</p>
+</div>
+<button class="w-12 h-6 bg-surface-variant border border-outline-variant rounded-full relative transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-background">
+<span class="absolute left-1 top-1 w-4 h-4 bg-outline rounded-full transition-transform"></span>
+</button>
+</div>
+</div>
+</div>
+<!-- Veri & Depolama (Data & Storage) -->
+<div class="bg-surface-container rounded-xl border border-outline-variant p-lg flex flex-col gap-md h-full md:col-span-2">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-surface-container-high rounded-lg text-error">
+<span class="material-symbols-outlined">storage</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface">Veri ve Depolama</h3>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-surface-container-high rounded-lg border border-error-container/30">
+<div>
+<p class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+                                    Yerel Depolama (LocalStorage) Durumu
+                                    <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">Aktif</span>
+</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Önbelleğe alınmış 12.4 MB veri bulunuyor. Performans sorunları yaşıyorsanız verileri temizleyebilirsiniz.</p>
+</div>
+<button class="h-[44px] px-6 rounded-lg border border-outline-variant text-error hover:bg-error-container/20 font-label-md text-label-md transition-colors whitespace-nowrap flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                                Verileri Temizle
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

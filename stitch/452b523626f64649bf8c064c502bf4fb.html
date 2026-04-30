@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hata Durumu - LeadTriage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#32343d",
+                        "on-error": "#690005",
+                        "secondary-fixed": "#d5e3fc",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#191b23",
+                        "surface-container-high": "#282a32",
+                        "primary": "#b4c5ff",
+                        "on-background": "#e1e2ed",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "surface-dim": "#11131b",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline": "#8d90a0",
+                        "outline-variant": "#434655",
+                        "secondary-container": "#3c4a5e",
+                        "error": "#ffb4ab",
+                        "on-primary": "#002a78",
+                        "on-tertiary": "#581e00",
+                        "surface-container-highest": "#32343d",
+                        "on-secondary": "#233144",
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "inverse-primary": "#0053db",
+                        "secondary": "#b9c7df",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "surface-bright": "#373942",
+                        "on-secondary-container": "#abb9d1",
+                        "primary-container": "#2563eb",
+                        "tertiary-container": "#bc4800",
+                        "on-tertiary-container": "#ffede6",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface": "#11131b",
+                        "on-surface": "#e1e2ed",
+                        "background": "#11131b",
+                        "on-tertiary-fixed": "#360f00",
+                        "tertiary": "#ffb596",
+                        "inverse-on-surface": "#2e3039",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container-lowest": "#0c0e16",
+                        "inverse-surface": "#e1e2ed",
+                        "surface-container": "#1d1f27",
+                        "on-surface-variant": "#c3c6d7",
+                        "surface-tint": "#b4c5ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "touch-target": "44px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-base": ["Inter"],
+                        "h3": ["Inter"],
+                        "h1": ["Inter"],
+                        "h2": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                        "body-base": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h3": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "600"}],
+                        "h1": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "h2": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center relative overflow-hidden font-body-base">
+<!-- Ambient Background Glow -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+<div class="w-[600px] h-[600px] bg-error/5 rounded-full blur-[100px]"></div>
+</div>
+<!-- Error Card Container -->
+<main class="relative z-10 w-full max-w-md px-gutter">
+<div class="bg-surface-container border border-outline-variant rounded-xl p-xl flex flex-col items-center text-center shadow-2xl">
+<!-- Error Icon Banner -->
+<div class="w-20 h-20 bg-error-container rounded-full flex items-center justify-center mb-lg ring-8 ring-background">
+<span class="material-symbols-outlined text-[40px] text-on-error-container" style="font-variation-settings: 'FILL' 1;">
+                    warning
+                </span>
+</div>
+<!-- Error Content -->
+<h1 class="font-h1 text-h1 text-on-surface mb-sm">Hata Durumu</h1>
+<p class="font-body-base text-body-base text-on-surface-variant mb-xl">
+                Veri kaydedilirken bir hata oluştu.
+            </p>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-md w-full">
+<!-- Primary Action -->
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-3 px-md rounded-lg min-h-[44px] hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+                    Tekrar Dene
+                </button>
+<!-- Secondary Action -->
+<button class="flex-1 bg-transparent border border-outline-variant text-on-surface font-label-md text-label-md py-3 px-md rounded-lg min-h-[44px] hover:bg-surface-variant transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+                    Yerel Veriyi Temizle
+                </button>
+</div>
+</div>
+</main>
+</body></html>
