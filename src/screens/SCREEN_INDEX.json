@@ -1,0 +1,74 @@
+[
+  {
+    "screenId": "452b523626f64649bf8c064c502bf4fb",
+    "title": "Hata Durumu (Error State)",
+    "componentName": "HataDurumuErrorState",
+    "file": "src/screens/HataDurumuErrorState.tsx",
+    "buttons": 2,
+    "inputs": 0,
+    "links": 0
+  },
+  {
+    "screenId": "d50725df3aac4b7da2938ad96c941f9f",
+    "title": "Adaylar (Leads)",
+    "componentName": "AdaylarLeads",
+    "file": "src/screens/AdaylarLeads.tsx",
+    "buttons": 16,
+    "inputs": 2,
+    "links": 7
+  },
+  {
+    "screenId": "96b697b8e3cc445583d7ecd68d469866",
+    "title": "Analizler (Insights)",
+    "componentName": "AnalizlerInsights",
+    "file": "src/screens/AnalizlerInsights.tsx",
+    "buttons": 5,
+    "inputs": 1,
+    "links": 8
+  },
+  {
+    "screenId": "263ba5c004b94d88a5450b4a3a741729",
+    "title": "Profil Paneli",
+    "componentName": "ProfilPaneli",
+    "file": "src/screens/ProfilPaneli.tsx",
+    "buttons": 7,
+    "inputs": 0,
+    "links": 7
+  },
+  {
+    "screenId": "f9ec0f4c93334b58bd87885429f05b43",
+    "title": "Aday Ekle/Düzenle",
+    "componentName": "AdayEkleduzenle",
+    "file": "src/screens/AdayEkleduzenle.tsx",
+    "buttons": 6,
+    "inputs": 5,
+    "links": 7
+  },
+  {
+    "screenId": "9f0b2c7b5ebb4efd9015d1b8787a5067",
+    "title": "Ayarlar (Settings)",
+    "componentName": "AyarlarSettings",
+    "file": "src/screens/AyarlarSettings.tsx",
+    "buttons": 8,
+    "inputs": 0,
+    "links": 7
+  },
+  {
+    "screenId": "659dc7b4eddb41c08cee7f87dba08785",
+    "title": "Pipeline (Board)",
+    "componentName": "PipelineBoard",
+    "file": "src/screens/PipelineBoard.tsx",
+    "buttons": 9,
+    "inputs": 0,
+    "links": 4
+  },
+  {
+    "screenId": "e9c4605311b9406194d3cf450b265752",
+    "title": "Boş Durum (Empty State)",
+    "componentName": "BosDurumEmptyState",
+    "file": "src/screens/BosDurumEmptyState.tsx",
+    "buttons": 4,
+    "inputs": 1,
+    "links": 7
+  }
+]
