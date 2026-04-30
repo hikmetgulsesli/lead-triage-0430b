@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useAppState } from './useAppState';
-import { loadState, saveState, clearStorage, SEED_LEADS } from '../utils/storage';
+import { loadState, saveState, clearStorage, SEED_LEADS, generateId } from '../utils/storage';
 
 vi.mock('../utils/storage', () => ({
   loadState: vi.fn(),
@@ -9,6 +9,7 @@ vi.mock('../utils/storage', () => ({
   clearStorage: vi.fn(),
   setSimulateError: vi.fn(),
   isSimulateError: vi.fn(() => false),
+  generateId: vi.fn(() => 'test-id-123'),
   SEED_LEADS: [
     {
       id: 'seed-1',
