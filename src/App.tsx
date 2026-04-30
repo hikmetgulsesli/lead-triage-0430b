@@ -139,6 +139,11 @@ export default function App() {
     pipeline: 'view_kanban',
     insights: 'analytics',
     settings: 'settings',
+    profile: 'account_circle',
+    addLead: 'add',
+    editLead: 'edit',
+    error: 'error',
+    empty: 'inbox',
   };
 
   const handleNavClick = useCallback((view: AppView) => {
@@ -355,8 +360,10 @@ export default function App() {
       )}
 
       {/* Main Content */}
-      <main className="pt-16 pb-20 md:pb-0 px-4 md:px-6 min-h-screen">
-        {showEmpty ? (
+      <main className="pt-16 pb-20 md:pb-0 px-4 md:px-6 min-h-screen flex flex-col">
+        {showError && state.leads.length === 0 && currentView === 'leads' ? (
+          <HataDurumuErrorState onRetry={handleSaveError} onClear={handleClearError} />
+        ) : showEmpty ? (
           <BosDurumEmptyState onAddLead={handleOpenAdd} />
         ) : activeView === 'leads' ? (
           <AdaylarLeads

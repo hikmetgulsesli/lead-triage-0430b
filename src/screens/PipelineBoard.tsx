@@ -22,8 +22,10 @@ interface PipelineBoardProps {
 
 const columns: { status: LeadStatus; label: string; dotColor: string }[] = [
   { status: "yeni", label: "Yeni", dotColor: "bg-blue-500" },
+  { status: "beklemede", label: "Beklemede", dotColor: "bg-gray-500" },
   { status: "iletisim", label: "İletişimde", dotColor: "bg-purple-500" },
   { status: "gorusuldu", label: "Görüşüldü", dotColor: "bg-yellow-500" },
+  { status: "tamamlandi", label: "Tamamlandı", dotColor: "bg-teal-500" },
   { status: "kazanildi", label: "Kazanıldı", dotColor: "bg-emerald-500" },
   { status: "kaybedildi", label: "Kaybedildi", dotColor: "bg-red-500" },
 ];
