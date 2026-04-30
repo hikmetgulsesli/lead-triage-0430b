@@ -43,8 +43,9 @@ describe('AyarlarSettings', () => {
     render(<AyarlarSettings {...defaultProps} />);
     const compactBtn = screen.getByText('Kompakt');
     const defaultBtn = screen.getByText('Varsayılan');
-    expect(compactBtn).toBeInTheDocument();
-    expect(defaultBtn).toBeInTheDocument();
+    // Default density is active (mockSettings.density === 'default')
+    expect(defaultBtn.closest('button')).toHaveClass('bg-surface-variant');
+    expect(compactBtn.closest('button')).not.toHaveClass('bg-surface-variant');
   });
 
   it('calls onSettingsChange when density compact selected', () => {

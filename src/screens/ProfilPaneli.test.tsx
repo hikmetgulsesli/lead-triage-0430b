@@ -58,8 +58,25 @@ describe('ProfilPaneli', () => {
   it('toggles notifications when switch clicked', () => {
     const onSettingsChange = vi.fn();
     render(<ProfilPaneli {...defaultProps} onSettingsChange={onSettingsChange} />);
-    const buttons = screen.getAllByRole('button');
-    const toggle = buttons.find(b => b.className.includes('h-6') && b.className.includes('w-11'));
+    // Find the notification toggle button by clicking the section and observing the handler call
+    // Use getAllByRole to find the toggle among all buttons
+    const allButtons = screen.getAllByRole('button');
+    // The toggle should be a button that when clicked triggers settings change
+    // Find by testing which button triggers the expected onSettingsChange call
+    let toggle = null;
+    for (const btn of allButtons) {
+      if (btn.textContent === 'notifications') {
+        toggle = btn;
+        break;
+      }
+    }
+    // Fallback: find button by class pattern matching toggle structure
+    if (!toggle) {
+      toggle = allButtons.find(b => {
+        const className = b.className || '';
+        return className.includes('h-6') && className.includes('w-11');
+      });
+    }
     expect(toggle).toBeTruthy();
     if (toggle) fireEvent.click(toggle);
     expect(onSettingsChange).toHaveBeenCalledWith({
