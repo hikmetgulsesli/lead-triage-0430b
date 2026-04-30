@@ -416,23 +416,6 @@ export default function App() {
         />
       )}
 
-      {/* Add Lead Modal */}
-      {showAddLead && (
-        <AdayEkleduzenle
-          onSave={handleAddLead}
-          onClose={handleCloseAdd}
-        />
-      )}
-
-      {/* Edit Lead Modal */}
-      {editingLead && (
-        <AdayEkleduzenle
-          lead={editingLead}
-          onSave={(data) => handleUpdateLead(data as Lead)}
-          onClose={handleCloseEdit}
-        />
-      )}
-
       {/* Main Content */}
       <main className="pt-16 pb-20 md:pb-0 px-4 md:px-6 min-h-screen flex flex-col">
         {showError && state.leads.length === 0 && currentView === 'leads' ? (
@@ -489,6 +472,22 @@ export default function App() {
             onAddLead={handleOpenAdd}
           />
         ) : null}
+        {/* Add Lead Modal */}
+        {showAddLead && (
+          <AdayEkleduzenle
+            onSave={handleAddLead}
+            onClose={handleCloseAdd}
+          />
+        )}
+
+        {/* Edit Lead Modal */}
+        {editingLead && (
+          <AdayEkleduzenle
+            lead={editingLead}
+            onSave={(data) => handleUpdateLead({ ...data, id: editingLead.id } as Lead)}
+            onClose={handleCloseEdit}
+          />
+        )}
       </main>
     </div>
   );
