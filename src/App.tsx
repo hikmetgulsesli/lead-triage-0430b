@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useRef } from 'react';
 import './index.css';
 import { useAppState } from './hooks/useAppState';
 import { formatCurrency, formatDate, downloadExport, setSimulateError } from './utils/storage';
@@ -33,8 +33,10 @@ export default function App() {
 
   const [currentView, setCurrentView] = useState<AppView>('leads');
   const [showProfile, setShowProfile] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
   const [editingLead, setEditingLead] = useState<Lead | null>(null);
   const [showAddLead, setShowAddLead] = useState(false);
+  const [pressedView, setPressedView] = useState<string | null>(null);
 
   const handleNavigate = useCallback((view: AppView) => {
     setCurrentView(view);
@@ -146,12 +148,30 @@ export default function App() {
     empty: 'inbox',
   };
 
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
   const handleNavClick = useCallback((view: AppView) => {
+    setPressedView(view);
+    setTimeout(() => setPressedView(null), 250);
+    if (view === currentView && !showAddLead && !editingLead) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      searchInputRef.current?.focus();
+    }
     handleNavigate(view);
-  }, [handleNavigate]);
+    setShowNotifications(false);
+  }, [currentView, showAddLead, editingLead, handleNavigate]);
 
   const handleProfileNav = useCallback(() => {
     setShowProfile(true);
+    setShowNotifications(false);
+  }, []);
+
+  const handleToggleNotifications = useCallback(() => {
+    setShowNotifications((prev) => !prev);
+  }, []);
+
+  const handleCloseNotifications = useCallback(() => {
+    setShowNotifications(false);
   }, []);
 
   const handleCloseProfile = useCallback(() => {
@@ -251,11 +271,12 @@ export default function App() {
       {/* Top Navigation Bar */}
       <nav className="fixed top-0 left-0 right-0 z-50 h-16 bg-[--color-surface-container] border-b border-[--color-outline-variant] flex items-center justify-between px-6">
         <div className="flex items-center gap-6">
-          <span className="text-lg font-black text-[--color-on-surface]">LeadTriage</span>
+          <h1 className="text-lg font-black text-[--color-on-surface]">LeadTriage</h1>
           {/* Search bar */}
           <div className="relative hidden md:flex items-center">
             <span className="material-symbols-outlined absolute left-3 text-[--color-outline] text-[20px]">search</span>
             <input
+              ref={searchInputRef}
               className="bg-[--color-surface-dim] border border-[--color-outline-variant] text-[--color-on-surface] rounded-lg pl-10 pr-4 py-2 text-sm focus:border-[--color-primary-container] focus:ring-1 focus:ring-[--color-primary-container] outline-none w-64 h-10 placeholder:text-[--color-outline]"
               placeholder="Arama yapın..."
               type="text"
@@ -274,7 +295,7 @@ export default function App() {
                 activeView === item.view
                   ? 'text-[--color-primary] border-[--color-primary] font-semibold'
                   : 'text-[--color-on-surface-variant] border-transparent hover:text-[--color-on-surface] hover:bg-[--color-surface-variant]/50'
-              }`}
+              } ${pressedView === item.view ? 'bg-[--color-surface-variant]/80' : ''}`}
             >
               {item.label}
             </button>
@@ -284,7 +305,13 @@ export default function App() {
         <div className="flex items-center gap-2">
           <button
             aria-label="Bildirimler"
-            className="w-[44px] h-[44px] flex items-center justify-center rounded-full text-[--color-on-surface-variant] hover:bg-[--color-surface-variant] transition-colors"
+            aria-expanded={showNotifications}
+            onClick={handleToggleNotifications}
+            className={`w-[44px] h-[44px] flex items-center justify-center rounded-full transition-colors ${
+              showNotifications
+                ? 'bg-[--color-primary]/10 text-[--color-primary]'
+                : 'text-[--color-on-surface-variant] hover:bg-[--color-surface-variant]'
+            }`}
           >
             <span className="material-symbols-outlined">notifications</span>
           </button>
@@ -302,6 +329,36 @@ export default function App() {
         </div>
       </nav>
 
+      {/* Notifications Dropdown */}
+      {showNotifications && (
+        <div className="fixed top-16 right-4 z-50 w-80 bg-[--color-surface-container] border border-[--color-outline-variant] rounded-lg shadow-2xl p-4 max-h-[70vh] overflow-y-auto">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="font-h3 text-[--color-on-surface]">Bildirimler</h2>
+            <button
+              aria-label="Bildirimleri kapat"
+              onClick={handleCloseNotifications}
+              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-[--color-surface-variant] text-[--color-on-surface-variant] transition-colors"
+            >
+              <span className="material-symbols-outlined text-[18px]">close</span>
+            </button>
+          </div>
+          <div className="space-y-2">
+            <div className="p-3 bg-[--color-surface-container-low] rounded-lg text-sm text-[--color-on-surface]">
+              <div className="font-medium">Yeni aday eklendi</div>
+              <div className="text-[--color-on-surface-variant] text-xs mt-1">Potansiyel müşteri listesine yeni bir aday kaydedildi.</div>
+            </div>
+            <div className="p-3 bg-[--color-surface-container-low] rounded-lg text-sm text-[--color-on-surface]">
+              <div className="font-medium">Görüşme hatırlatması</div>
+              <div className="text-[--color-on-surface-variant] text-xs mt-1">Yarın saat 14:00'te Ahmet Yılmaz ile görüşmeniz var.</div>
+            </div>
+            <div className="p-3 bg-[--color-surface-container-low] rounded-lg text-sm text-[--color-on-surface]">
+              <div className="font-medium">Durum güncellemesi</div>
+              <div className="text-[--color-on-surface-variant] text-xs mt-1">Bir adayın durumu "Kazanıldı" olarak işaretlendi.</div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Mobile nav */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 bg-[--color-surface-container] border-t border-[--color-outline-variant] md:hidden flex items-center justify-around h-16 px-4">
         {navItems.map((item) => (
@@ -312,7 +369,7 @@ export default function App() {
               activeView === item.view
                 ? 'text-[--color-primary]'
                 : 'text-[--color-on-surface-variant]'
-            }`}
+            } ${pressedView === item.view ? 'bg-[--color-surface-variant]/80' : ''}`}
           >
             <span className="material-symbols-outlined text-[20px]">
 {viewIcons[item.view]}
@@ -364,7 +421,7 @@ export default function App() {
         {showError && state.leads.length === 0 && currentView === 'leads' ? (
           <HataDurumuErrorState onRetry={handleSaveError} onClear={handleClearError} />
         ) : showEmpty ? (
-          <BosDurumEmptyState onAddLead={handleOpenAdd} />
+          <BosDurumEmptyState onAddLead={handleOpenAdd} isAddOpen={showAddLead} />
         ) : currentView === 'leads' ? (
           <AdaylarLeads
             leads={filteredLeads}

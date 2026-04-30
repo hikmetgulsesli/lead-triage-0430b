@@ -9,10 +9,11 @@
 
 interface BosDurumEmptyStateProps {
   onAddLead: () => void;
+  isAddOpen?: boolean;
 }
 
 export function BosDurumEmptyState(props: BosDurumEmptyStateProps) {
-  const { onAddLead } = props;
+  const { onAddLead, isAddOpen } = props;
 
   return (
     <div className="flex-grow flex items-center justify-center p-lg relative overflow-y-auto">
@@ -42,6 +43,7 @@ export function BosDurumEmptyState(props: BosDurumEmptyStateProps) {
         {/* CTA */}
         <button
           onClick={onAddLead}
+          aria-expanded={isAddOpen}
           className="bg-primary-container text-white font-label-md text-label-md px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-inverse-primary transition-colors min-h-[44px] shadow-lg shadow-primary-container/20"
         >
           <span className="material-symbols-outlined text-[18px]">add</span>
