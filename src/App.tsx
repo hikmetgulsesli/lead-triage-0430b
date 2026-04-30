@@ -202,7 +202,7 @@ export default function App() {
   };
 
   // Empty state: no leads and no error
-  const showEmpty = state.leads.length === 0 && !state.error && currentView !== 'addLead' && currentView !== 'editLead';
+  const showEmpty = state.leads.length === 0 && !state.error && currentView === 'leads';
   // Error state
   const showError = state.error !== null;
 

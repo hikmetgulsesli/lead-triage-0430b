@@ -226,4 +226,17 @@ describe('useAppState', () => {
     });
     expect(saveState).toHaveBeenCalled();
   });
+
+  it('simulates save error and retries', () => {
+    (loadState as ReturnType<typeof vi.fn>).mockReturnValue(null);
+    const { result } = renderHook(() => useAppState());
+    act(() => {
+      result.current.setError('Veri kaydedilirken bir hata oluştu');
+    });
+    expect(result.current.state.error).toBe('Veri kaydedilirken bir hata oluştu');
+    act(() => {
+      result.current.retrySave();
+    });
+    expect(result.current.state.error).toBeNull();
+  });
 });
