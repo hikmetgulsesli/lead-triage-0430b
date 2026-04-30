@@ -7,6 +7,8 @@
 // 3. Add onClick/onChange handlers to interactive elements
 // 4. Replace placeholder data with props/state
 
+import type { FC } from "react";
+
 interface BosDurumEmptyStateProps {
   onAddLead: () => void;
   isAddOpen?: boolean;
@@ -14,7 +16,6 @@ interface BosDurumEmptyStateProps {
 
 export function BosDurumEmptyState(props: BosDurumEmptyStateProps) {
   const { onAddLead, isAddOpen = false } = props;
-
   return (
     <div className="flex-grow flex items-center justify-center p-lg relative overflow-y-auto">
       <div className="max-w-md w-full flex flex-col items-center text-center">
@@ -42,6 +43,7 @@ export function BosDurumEmptyState(props: BosDurumEmptyStateProps) {
         </p>
         {/* CTA */}
         <button
+          
           id="add-first-lead-btn"
           onClick={onAddLead}
           aria-expanded={isAddOpen}
