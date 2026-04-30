@@ -472,22 +472,22 @@ export default function App() {
             onAddLead={handleOpenAdd}
           />
         ) : null}
-      {/* Add Lead Modal */}
-      {showAddLead && (
-        <AdayEkleduzenle
-          onSave={handleAddLead}
-          onClose={handleCloseAdd}
-        />
-      )}
+        {/* Add Lead Modal */}
+        {showAddLead && (
+          <AdayEkleduzenle
+            onSave={handleAddLead}
+            onClose={handleCloseAdd}
+          />
+        )}
 
-      {/* Edit Lead Modal */}
-      {editingLead && (
-        <AdayEkleduzenle
-          lead={editingLead}
-          onSave={(data) => handleUpdateLead(data as Lead)}
-          onClose={handleCloseEdit}
-        />
-      )}
+        {/* Edit Lead Modal */}
+        {editingLead && (
+          <AdayEkleduzenle
+            lead={editingLead}
+            onSave={(data) => handleUpdateLead({ ...data, id: editingLead.id } as Lead)}
+            onClose={handleCloseEdit}
+          />
+        )}
       </main>
     </div>
   );
