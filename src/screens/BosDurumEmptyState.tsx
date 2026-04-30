@@ -7,6 +7,8 @@
 // 3. Add onClick/onChange handlers to interactive elements
 // 4. Replace placeholder data with props/state
 
+import { useRef, useEffect } from "react";
+
 interface BosDurumEmptyStateProps {
   onAddLead: () => void;
   isAddOpen?: boolean;
@@ -14,6 +16,14 @@ interface BosDurumEmptyStateProps {
 
 export function BosDurumEmptyState(props: BosDurumEmptyStateProps) {
   const { onAddLead, isAddOpen = false } = props;
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const btn = buttonRef.current;
+    if (!btn) return;
+    const handler = () => onAddLead();
+    btn.addEventListener("click", handler);
+  }, [onAddLead]);
 
   return (
     <div className="flex-grow flex items-center justify-center p-lg relative overflow-y-auto">
@@ -42,6 +52,7 @@ export function BosDurumEmptyState(props: BosDurumEmptyStateProps) {
         </p>
         {/* CTA */}
         <button
+          ref={buttonRef}
           id="add-first-lead-btn"
           onClick={onAddLead}
           aria-expanded={isAddOpen}

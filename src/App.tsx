@@ -420,10 +420,8 @@ export default function App() {
       <main className="pt-16 pb-20 md:pb-0 px-4 md:px-6 min-h-screen flex flex-col">
         {showError && state.leads.length === 0 && currentView === 'leads' ? (
           <HataDurumuErrorState onRetry={handleSaveError} onClear={handleClearError} />
-        ) : showEmpty && !showAddLead ? (
+        ) : showEmpty ? (
           <BosDurumEmptyState onAddLead={handleOpenAdd} isAddOpen={showAddLead} />
-        ) : showEmpty && showAddLead ? (
-          <div className="flex-1" aria-hidden="true" />
         ) : currentView === 'leads' ? (
           <AdaylarLeads
             leads={filteredLeads}
