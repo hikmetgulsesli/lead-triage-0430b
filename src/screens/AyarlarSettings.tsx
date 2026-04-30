@@ -35,7 +35,7 @@ export function AyarlarSettings(props: AyarlarSettingsProps) {
     <div className="max-w-4xl mx-auto space-y-lg">
       {/* Page Header */}
       <div>
-        <h2 className="font-h1 text-h1 text-on-surface">Ayarlar</h2>
+        <h1 className="font-h1 text-h1 text-on-surface">Ayarlar</h1>
         <p className="font-body-base text-body-base text-on-surface-variant mt-1">Uygulama tercihlerinizi ve sistem ayarlarınızı yapılandırın.</p>
       </div>
       {/* Bento Grid Layout for Settings */}

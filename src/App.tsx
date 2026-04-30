@@ -35,6 +35,7 @@ export default function App() {
   const [showProfile, setShowProfile] = useState(false);
   const [editingLead, setEditingLead] = useState<Lead | null>(null);
   const [showAddLead, setShowAddLead] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   const handleNavigate = useCallback((view: AppView) => {
     setCurrentView(view);
@@ -77,6 +78,10 @@ export default function App() {
 
   const handleOpenAdd = useCallback(() => {
     setShowAddLead(true);
+  }, []);
+
+  const handleNotificationsClick = useCallback(() => {
+    setShowNotifications(true);
   }, []);
 
   const handleCloseAdd = useCallback(() => {
@@ -284,6 +289,7 @@ export default function App() {
         <div className="flex items-center gap-2">
           <button
             aria-label="Bildirimler"
+            onClick={handleNotificationsClick}
             className="w-[44px] h-[44px] flex items-center justify-center rounded-full text-[--color-on-surface-variant] hover:bg-[--color-surface-variant] transition-colors"
           >
             <span className="material-symbols-outlined">notifications</span>
