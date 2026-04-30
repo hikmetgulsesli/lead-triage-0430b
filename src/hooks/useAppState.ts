@@ -1,6 +1,6 @@
 import { useReducer, useEffect, useCallback } from 'react';
 import type { AppState, AppAction, Lead, AppSettings, UserProfile, AppFilters } from '../types/domain';
-import { loadState, saveState, clearStorage, SEED_LEADS } from '../utils/storage';
+import { loadState, saveState, clearStorage, SEED_LEADS, generateId } from '../utils/storage';
 
 const defaultSettings: AppSettings = {
   currency: 'TRY',
@@ -113,7 +113,7 @@ export function useAppState() {
   }, [state]);
 
   const addLead = useCallback((lead: Omit<Lead, 'id'>) => {
-    const newLead: Lead = { ...lead, id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}` };
+    const newLead: Lead = { ...lead, id: generateId() };
     dispatch({ type: 'ADD_LEAD', payload: newLead });
     return newLead.id;
   }, []);

@@ -134,6 +134,13 @@ export default function App() {
     { label: 'Ayarlar', view: 'settings' },
   ];
 
+  const viewIcons: Record<AppView, string> = {
+    leads: 'person',
+    pipeline: 'view_kanban',
+    insights: 'analytics',
+    settings: 'settings',
+  };
+
   const handleNavClick = useCallback((view: AppView) => {
     handleNavigate(view);
   }, [handleNavigate]);
@@ -303,7 +310,7 @@ export default function App() {
             }`}
           >
             <span className="material-symbols-outlined text-[20px]">
-              {item.view === 'leads' ? 'person' : item.view === 'pipeline' ? 'view_kanban' : item.view === 'insights' ? 'analytics' : 'settings'}
+{viewIcons[item.view]}
             </span>
             <span className="font-label-sm text-[10px]">{item.label}</span>
           </button>

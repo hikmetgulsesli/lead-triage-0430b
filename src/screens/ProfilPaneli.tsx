@@ -104,7 +104,7 @@ export function ProfilPaneli(props: ProfilPaneliProps) {
             className="w-full flex items-center justify-center gap-sm bg-transparent border border-outline-variant text-error font-label-md py-3 rounded-lg hover:bg-error-container hover:text-on-error hover:border-error-container transition-colors"
           >
             <span className="material-symbols-outlined">logout</span>
-            Çıkış Yap
+            Tüm Verileri Sil
           </button>
         </div>
       </div>

@@ -78,7 +78,7 @@ export function AdayEkleduzenle(props: AdayEkleduzenleProps) {
       contacted: status === "gorusuldu" || status === "tamamlandi" || status === "kazanildi",
     };
     if (isEditing && lead) {
-      onSave({ ...data, id: lead.id, contacted: lead.contacted });
+      onSave({ ...data, id: lead.id });
     } else {
       onSave(data);
     }
