@@ -81,6 +81,10 @@ export default function App() {
     setShowAddLead(true);
   }, []);
 
+  const handleNotificationsClick = useCallback(() => {
+    setShowNotifications(true);
+  }, []);
+
   const handleCloseAdd = useCallback(() => {
     setShowAddLead(false);
   }, []);
@@ -277,7 +281,7 @@ export default function App() {
       {/* Top Navigation Bar */}
       <nav className="fixed top-0 left-0 right-0 z-50 h-16 bg-[--color-surface-container] border-b border-[--color-outline-variant] flex items-center justify-between px-6">
         <div className="flex items-center gap-6">
-          <span className="text-lg font-black text-[--color-on-surface]">LeadTriage</span>
+          <h1 className="text-lg font-black text-[--color-on-surface]">LeadTriage</h1>
           {/* Search bar */}
           <div className="relative hidden md:flex items-center">
             <span className="material-symbols-outlined absolute left-3 text-[--color-outline] text-[20px]">search</span>
