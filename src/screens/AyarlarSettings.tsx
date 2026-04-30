@@ -46,7 +46,7 @@ export function AyarlarSettings(props: AyarlarSettingsProps) {
             <div className="p-2 bg-surface-container-high rounded-lg text-primary">
               <span className="material-symbols-outlined">palette</span>
             </div>
-            <h3 className="font-h3 text-h3 text-on-surface">Görünüm &amp; Tema</h3>
+            <h3 className="font-h3 text-h3 text-on-surface">Görünüm & Tema</h3>
           </div>
           <div className="space-y-4 flex-1">
             <div>
