@@ -365,7 +365,7 @@ export default function App() {
           <HataDurumuErrorState onRetry={handleSaveError} onClear={handleClearError} />
         ) : showEmpty ? (
           <BosDurumEmptyState onAddLead={handleOpenAdd} />
-        ) : activeView === 'leads' ? (
+        ) : currentView === 'leads' ? (
           <AdaylarLeads
             leads={filteredLeads}
             searchQuery={state.searchQuery}
@@ -384,7 +384,7 @@ export default function App() {
             statusLabel={statusLabel}
             currency={state.settings.currency}
           />
-        ) : activeView === 'pipeline' ? (
+        ) : currentView === 'pipeline' ? (
           <PipelineBoard
             leads={state.leads}
             onStatusChange={handleStatusChange}
@@ -393,7 +393,7 @@ export default function App() {
             onAddLead={handleOpenAdd}
             currency={state.settings.currency}
           />
-        ) : activeView === 'insights' ? (
+        ) : currentView === 'insights' ? (
           <AnalizlerInsights
             stats={stats}
             leads={state.leads}
@@ -402,7 +402,7 @@ export default function App() {
             onExport={handleExport}
             currency={state.settings.currency}
           />
-        ) : activeView === 'settings' ? (
+        ) : currentView === 'settings' ? (
           <AyarlarSettings
             settings={state.settings}
             onSettingsChange={handleSettingsChange}
