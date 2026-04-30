@@ -139,6 +139,11 @@ export default function App() {
     pipeline: 'view_kanban',
     insights: 'analytics',
     settings: 'settings',
+    profile: 'account_circle',
+    addLead: 'person_add',
+    editLead: 'person_edit',
+    error: 'error',
+    empty: 'inbox',
   };
 
   const handleNavClick = useCallback((view: AppView) => {
