@@ -86,14 +86,16 @@ describe('AnalizlerInsights', () => {
 
   it('shows total lead count', () => {
     render(<AnalizlerInsights {...defaultProps} />);
-    const totalAdaySection = screen.getByText('Toplam Aday').closest('div')?.parentElement;
-    expect(totalAdaySection?.textContent).toContain('5');
+    // Use closest card element to scope the assertion to the Toplam Aday card
+    const card = screen.getByText('Toplam Aday').closest('[class*="rounded"]');
+    expect(card?.textContent).toContain('5');
   });
 
   it('shows win rate', () => {
     render(<AnalizlerInsights {...defaultProps} />);
-    const kazanilanSection = screen.getByText('Kazanılan/Kaybedilen').closest('div')?.parentElement;
-    expect(kazanilanSection?.textContent).toContain('50%');
+    // Use closest card element to scope the assertion to the Kazanılan/Kaybedilen card
+    const card = screen.getByText('Kazanılan/Kaybedilen').closest('[class*="rounded"]');
+    expect(card?.textContent).toContain('50%');
   });
 
   it('shows total value', () => {
@@ -130,10 +132,12 @@ describe('AnalizlerInsights', () => {
       />
     );
     expect(screen.getByText('Analizler')).toBeInTheDocument();
-    const totalAdaySection = screen.getByText('Toplam Aday').closest('div')?.parentElement;
-    expect(totalAdaySection?.textContent).toContain('0');
-    const kazanilanSection = screen.getByText('Kazanılan/Kaybedilen').closest('div')?.parentElement;
-    expect(kazanilanSection?.textContent).toContain('0%');
+    // Verify 0 appears in the Toplam Aday card section
+    const totalCard = screen.getByText('Toplam Aday').closest('[class*="rounded"]');
+    expect(totalCard?.textContent).toContain('0');
+    // Verify 0% appears in the Kazanılan/Kaybedilen card section
+    const kazanilanCard = screen.getByText('Kazanılan/Kaybedilen').closest('[class*="rounded"]');
+    expect(kazanilanCard?.textContent).toContain('0%');
   });
 
   it('shows correct won/lost breakdown in funnel', () => {

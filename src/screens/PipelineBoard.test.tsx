@@ -79,7 +79,7 @@ describe('PipelineBoard', () => {
 
   it('shows lead count per column', () => {
     render(<PipelineBoard {...defaultProps} />);
-    // Yeni column should have count 1
+    // Yeni column should have count 1 — find badge next to "Yeni" heading
     const yeniColumn = screen.getByText('Yeni').closest('div')?.parentElement;
     expect(yeniColumn?.textContent).toContain('1');
   });
@@ -96,6 +96,9 @@ describe('PipelineBoard', () => {
     render(<PipelineBoard {...defaultProps} />);
     const values = screen.getAllByText(/Tahmini Değer/);
     expect(values.length).toBeGreaterThanOrEqual(1);
+    // Verify Yeni column shows correct total (100000 for Elif Yılmaz)
+    const yeniColumn = screen.getByText('Yeni').closest('div')?.parentElement;
+    expect(yeniColumn?.textContent).toContain('₺100.000');
   });
 
   it('calls onAddLead when Yeni Fırsat button clicked', () => {
@@ -105,12 +108,13 @@ describe('PipelineBoard', () => {
     expect(onAddLead).toHaveBeenCalled();
   });
 
-  it('calls onStatusChange when more_vert button clicked', () => {
+  it('calls onStatusChange with leadId and nextStatus when more_vert button clicked', () => {
     const onStatusChange = vi.fn();
     render(<PipelineBoard {...defaultProps} onStatusChange={onStatusChange} />);
+    // Lead '1' (Reel Forge) is in 'yeni' column; clicking more_vert cycles to 'beklemede'
     const buttons = screen.getAllByTitle('Durum değiştir');
     fireEvent.click(buttons[0]);
-    expect(onStatusChange).toHaveBeenCalled();
+    expect(onStatusChange).toHaveBeenCalledWith('1', 'beklemede');
   });
 
   it('shows empty state message for empty columns', () => {
