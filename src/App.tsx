@@ -271,13 +271,13 @@ export default function App() {
         {/* Trailing actions */}
         <div className="flex items-center gap-2">
           <button
-            aria-label="notifications"
+            aria-label="Bildirimler"
             className="w-[44px] h-[44px] flex items-center justify-center rounded-full text-[--color-on-surface-variant] hover:bg-[--color-surface-variant] transition-colors"
           >
             <span className="material-symbols-outlined">notifications</span>
           </button>
           <button
-            aria-label="account_circle"
+            aria-label="Profil"
             onClick={handleProfileNav}
             className={`w-[44px] h-[44px] flex items-center justify-center rounded-full transition-colors ${
               showProfile
@@ -319,105 +319,36 @@ export default function App() {
 
       {/* Profile Panel */}
       {showProfile && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:justify-end">
-          <div
-            className="absolute inset-0 bg-[--color-surface-container-lowest]/80 backdrop-blur-sm"
-            onClick={handleCloseProfile}
-          />
-          <div className="relative bg-[--color-surface-container-high] w-full max-w-sm rounded-xl border border-[--color-outline-variant] shadow-2xl flex flex-col overflow-hidden max-h-[90vh]">
-            {/* Panel Header */}
-            <div className="flex items-center justify-between p-lg border-b border-[--color-outline-variant] bg-[--color-surface-container]">
-              <h2 className="font-h2 text-[--color-on-surface]">Kullanıcı Profili</h2>
-              <button
-                onClick={handleCloseProfile}
-                aria-label="Kapat"
-                className="w-[44px] h-[44px] flex items-center justify-center text-[--color-on-surface-variant] hover:bg-[--color-surface-variant] rounded-full transition-colors -mr-2"
-              >
-                <span className="material-symbols-outlined">close</span>
-              </button>
-            </div>
-            {/* Panel Content */}
-            <div className="p-lg flex-1 overflow-y-auto">
-              {/* User Info */}
-              <div className="flex items-center gap-md mb-xl">
-                <div className="w-16 h-16 rounded-full bg-[--color-surface-variant] flex items-center justify-center border border-[--color-outline-variant] shrink-0">
-                  <span className="material-symbols-outlined text-3xl text-[--color-on-surface-variant]">person</span>
-                </div>
-                <div>
-                  <div className="font-h3 text-[--color-on-surface]">{state.profile.name}</div>
-                  <div className="font-body-sm text-[--color-on-surface-variant]">{state.profile.email}</div>
-                </div>
-              </div>
-              {/* Settings Group */}
-              <div className="space-y-md">
-                {/* Timezone */}
-                <div className="bg-[--color-surface-container] rounded-lg p-md border border-[--color-outline-variant]">
-                  <label className="block font-label-sm text-[--color-on-surface-variant] mb-sm uppercase">Zaman Dilimi</label>
-                  <div className="flex items-center gap-sm text-[--color-on-surface] font-body-base bg-[--color-surface-dim] p-sm rounded border border-[--color-outline-variant]">
-                    <span className="material-symbols-outlined text-[--color-outline]">schedule</span>
-                    <span className="flex-1">{state.profile.timezone}</span>
-                    <button className="text-[--color-primary] hover:text-[--color-primary-fixed] text-sm">Değiştir</button>
-                  </div>
-                </div>
-                {/* Notifications Toggle */}
-                <div className="bg-[--color-surface-container] rounded-lg p-md border border-[--color-outline-variant] flex items-center justify-between">
-                  <div>
-                    <div className="font-h3 text-[--color-on-surface]">Bildirimler</div>
-                    <div className="font-body-sm text-[--color-on-surface-variant] mt-xs">E-posta ve sistem uyarıları</div>
-                  </div>
-                  <button
-                    onClick={() => handleSettingsChange({ notifications: { ...state.settings.notifications, newLead: !state.settings.notifications.newLead } })}
-                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[--color-primary] focus:ring-offset-2 focus:ring-offset-[--color-surface] ${
-                      state.settings.notifications.newLead ? 'bg-[--color-primary]' : 'bg-[--color-surface-variant] border border-[--color-outline]'
-                    }`}
-                  >
-                    <span className={`inline-block h-4 w-4 transform rounded-full transition-transform ${
-                      state.settings.notifications.newLead ? 'translate-x-6 bg-[--color-on-primary]' : 'translate-x-1 bg-[--color-outline]'
-                    }`} />
-                  </button>
-                </div>
-              </div>
-            </div>
-            {/* Panel Footer */}
-            <div className="p-lg border-t border-[--color-outline-variant] bg-[--color-surface-container]">
-              <button
-                onClick={handleClearAll}
-                className="w-full flex items-center justify-center gap-sm bg-transparent border border-[--color-outline-variant] text-[--color-error] font-label-md py-3 rounded-lg hover:bg-[--color-error-container] hover:text-[--color-on-error] hover:border-[--color-error-container] transition-colors"
-              >
-                <span className="material-symbols-outlined">logout</span>
-                Çıkış Yap
-              </button>
-            </div>
-          </div>
-        </div>
+        <ProfilPaneli
+          profile={state.profile}
+          settings={state.settings}
+          onProfileChange={handleProfileChange}
+          onSettingsChange={handleSettingsChange}
+          onClose={handleCloseProfile}
+          onClearAll={handleClearAll}
+          onNavigate={handleNavigate}
+        />
       )}
 
       {/* Add Lead Modal */}
       {showAddLead && (
-        <div className="fixed inset-0 z-[70]">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={handleCloseAdd} />
-          <AdayEkleduzenle
-            onSave={(data) => handleAddLead(data as Omit<Lead, 'id'>)}
-            onClose={handleCloseAdd}
-          />
-        </div>
+        <AdayEkleduzenle
+          onSave={handleAddLead}
+          onClose={handleCloseAdd}
+        />
       )}
 
       {/* Edit Lead Modal */}
       {editingLead && (
-        <div className="fixed inset-0 z-[70]">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={handleCloseEdit} />
-          <AdayEkleduzenle
-            lead={editingLead}
-            onSave={(data) => handleUpdateLead(data as Lead)}
-            onClose={handleCloseEdit}
-          />
-        </div>
+        <AdayEkleduzenle
+          lead={editingLead}
+          onSave={(data) => handleUpdateLead(data as Lead)}
+          onClose={handleCloseEdit}
+        />
       )}
 
       {/* Main Content */}
       <main className="pt-16 pb-20 md:pb-0 px-4 md:px-6 min-h-screen">
-        {showError && !state.error ? null : null}
         {showEmpty ? (
           <BosDurumEmptyState onAddLead={handleOpenAdd} />
         ) : activeView === 'leads' ? (
@@ -433,6 +364,8 @@ export default function App() {
             onDelete={handleDeleteLead}
             onEdit={handleOpenEdit}
             onAddLead={handleOpenAdd}
+            onNavigate={handleNavigate}
+            onOpenProfile={handleProfileNav}
             sourceLabel={sourceLabel}
             statusLabel={statusLabel}
             currency={state.settings.currency}
@@ -441,12 +374,18 @@ export default function App() {
           <PipelineBoard
             leads={state.leads}
             onStatusChange={handleStatusChange}
+            onNavigate={handleNavigate}
+            onOpenProfile={handleProfileNav}
+            onAddLead={handleOpenAdd}
             currency={state.settings.currency}
           />
         ) : activeView === 'insights' ? (
           <AnalizlerInsights
             stats={stats}
             leads={state.leads}
+            onNavigate={handleNavigate}
+            onOpenProfile={handleProfileNav}
+            onExport={handleExport}
             currency={state.settings.currency}
           />
         ) : activeView === 'settings' ? (
@@ -457,6 +396,9 @@ export default function App() {
             onLoadSeed={handleLoadSeed}
             onExport={handleExport}
             onSimulateError={handleSimulateError}
+            onNavigate={handleNavigate}
+            onOpenProfile={handleProfileNav}
+            onAddLead={handleOpenAdd}
           />
         ) : null}
       </main>
